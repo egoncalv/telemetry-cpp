@@ -1,17 +1,17 @@
-find_package(Protobuf REQUIRED)
-
-add_library(proto_files
+add_library(protoLib
         v1/SensorData.proto
 )
 
+set(CURRENT_PROTO_VERSION "v1")
+
 protobuf_generate(
-        TARGET proto_files
+        TARGET protoLib
 )
 
-target_link_libraries(proto_files
+target_link_libraries(protoLib
         PUBLIC
             protobuf::libprotobuf)
 
-target_include_directories(proto_files PUBLIC
+target_include_directories(protoLib PUBLIC
         ${CMAKE_CURRENT_BINARY_DIR}
 )

@@ -1,18 +1,9 @@
 cmake_minimum_required(VERSION 3.28)
-project(telemetry_cpp)
+project(telemetry_cpp VERSION 1.0)
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(telemetry_cpp)
-target_sources(telemetry_cpp
-    PRIVATE
-        main.cpp
-)
+find_package(Protobuf REQUIRED)
 
 add_subdirectory(protobuf)
-
-target_link_libraries(telemetry_cpp PUBLIC proto_files)
-
-target_include_directories(telemetry_cpp PUBLIC
-        ${CMAKE_CURRENT_BINARY_DIR}
-        ${CMAKE_CURRENT_BINARY_DIR}/protobuf/v1
-)
+add_subdirectory(sensorSimulator)
+add_subdirectory(backendService)
