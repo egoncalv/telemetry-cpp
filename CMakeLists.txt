@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(PAHO_WITH_MQTT_C ON)
 
-find_package(Protobuf REQUIRED)
+find_package(Protobuf CONFIG REQUIRED)
 
 add_subdirectory(paho.mqtt.cpp)
 add_subdirectory(protobuf)

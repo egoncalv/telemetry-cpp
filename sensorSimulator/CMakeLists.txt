@@ -6,7 +6,6 @@ add_executable(sensorSimulator
         src/Sensor.cpp
         src/MqttPublisher.cpp
         src/main.cpp
-        src/SafeQueue.cpp
 )
 
 target_link_libraries(sensorSimulator PUBLIC protoLib PahoMqttCpp::paho-mqttpp3)
