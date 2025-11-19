@@ -9,7 +9,7 @@
 
 class MqttPublisher {
 public:
-    MqttPublisher(const std::string& brokerAddress, const std::string& clientId);
+    MqttPublisher(const std::string& brokerAddress, std::string  clientId);
     ~MqttPublisher();
 
     void connect();

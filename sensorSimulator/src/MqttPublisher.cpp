@@ -2,10 +2,12 @@
 // Created by Erick Gonçalves on 18/11/2025.
 //
 
+#include <utility>
+
 #include "../include/MqttPublisher.h"
 
-MqttPublisher::MqttPublisher(const std::string& brokerAddress, const std::string& clientId)
-    : mClientId(clientId) {
+MqttPublisher::MqttPublisher(const std::string& brokerAddress, std::string clientId)
+    : mClientId(std::move(clientId)) {
     mClientOptions = mqtt::create_options_builder()
                         .client_id(mClientId)
                         .server_uri(brokerAddress)
