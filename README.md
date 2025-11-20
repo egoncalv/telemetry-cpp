@@ -12,8 +12,8 @@ It uses Protobuf, MQTT, multithreading and a safe queue for efficient data handl
 - **Safe Queue**: Implements a thread-safe queue to manage data flow between threads.
 
 ## Prerequisites
-- C++17 compatible compiler
-- CMake 3.10 or higher
+- C++20 compatible compiler
+- CMake 3.28 or higher
 - Protobuf library
 
 ## How to run:
