@@ -4,6 +4,7 @@ The system is designed to generate, serialize, and transmit fake telemetry data.
 It uses Protobuf, MQTT, multithreading and a safe queue for efficient data handling.
 
 ## Features
+- **Cmake Build System**: Uses CMake for building the project.
 - **Fake Telemetry Data Generation**: Simulates telemetry data for testing purposes.
 - **Protobuf Serialization**: Uses Protocol Buffers for efficient data serialization, using arenas to optimize memory usage.
 - **MQTT Communication**: Transmits serialized data over MQTT protocol.
