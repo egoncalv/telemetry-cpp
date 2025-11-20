@@ -23,6 +23,16 @@ public:
         mQueue.pop();
         return value;
     };
+
+    T tryPopFor(const std::chrono::milliseconds& timeoutDuration) {
+        std::unique_lock lock(mMutex);
+        if (!mCondition.wait_for(lock, timeoutDuration, [this]() { return !mQueue.empty(); })) {
+            throw std::runtime_error("Timeout while waiting to pop from SafeQueue");
+        }
+        T value = std::move(mQueue.front());
+        mQueue.pop();
+        return value;
+    }
 private:
     std::queue<T> mQueue;
     std::mutex mMutex;

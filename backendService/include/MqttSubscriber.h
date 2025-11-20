@@ -14,10 +14,9 @@ public:
     void startConsuming();
     void subscribe(const std::string& topic);
     void startReceiveMessageLoop();
-    void stopReceiveMessageLoop();
     void parseAndLogMessage(const mqtt::const_message_ptr& receivedMessage);
 
 private:
     std::thread messageReceiverThread;
-    std::atomic<bool> messageReceiverThreadRunning;
+    std::atomic<bool> isReceivingMessages;
 };

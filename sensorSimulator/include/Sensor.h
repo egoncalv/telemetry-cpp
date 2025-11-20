@@ -23,12 +23,14 @@ public:
     void start();
     void stop();
 
+    int sensorId() const;
+
 private:
     void readSensorDataIntoQueue();
     static SensorReading generateRandomData();
 
     std::string serializeDataIntoProtobuf(const SensorReading& data);
-    void clearArenaIfFull(google::protobuf::Arena& arena, std::size_t bytesUsed);
+    static void clearArenaIfFull(google::protobuf::Arena& arena, std::size_t bytesUsed);
 
     int mSensorId;
 

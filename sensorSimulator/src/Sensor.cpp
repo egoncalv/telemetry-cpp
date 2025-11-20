@@ -19,13 +19,12 @@ Sensor::~Sensor() {
 }
 
 void Sensor::start() {
-    if (isRunning) {
+    if (isRunning.load()) {
         std::cout << "Sensor " << mSensorId << " is already running." << std::endl;
     }
     sensorThread = std::thread([this]() {
         isRunning = true;
-        while (isRunning) {
-
+        while (isRunning.load()) {
             readSensorDataIntoQueue();
             std::this_thread::sleep_for(properties::sensorReadingFrequency);
         }
@@ -48,6 +47,13 @@ void Sensor::readSensorDataIntoQueue() {
 
 void Sensor::stop() {
     isRunning = false;
+    if (sensorThread.joinable()) {
+        sensorThread.join();
+    }
+}
+
+int Sensor::sensorId() const {
+    return mSensorId;
 }
 
 SensorReading Sensor::generateRandomData() {
@@ -65,7 +71,7 @@ SensorReading Sensor::generateRandomData() {
 
 std::string Sensor::serializeDataIntoProtobuf(const SensorReading& data) {
     thread_local google::protobuf::Arena arena;
-    SensorData* sensorDataProto = google::protobuf::Arena::Create<SensorData>(&arena);
+    auto* sensorDataProto = google::protobuf::Arena::Create<SensorData>(&arena);
     sensorDataProto->set_sensor_id(mSensorId);
     sensorDataProto->set_timestamp(data.timestamp);
     sensorDataProto->set_temperature(data.temperature);

@@ -15,14 +15,16 @@ MqttSubscriber::MqttSubscriber(const std::string& brokerAddress, const std::stri
     .clean_session(true)
     .automatic_reconnect()
     .finalize()) {
-    messageReceiverThreadRunning = false;
+    isReceivingMessages = false;
 }
 
 MqttSubscriber::~MqttSubscriber() {
-    messageReceiverThreadRunning = false;
+    isReceivingMessages = false;
+    mMqttClient->stop_consuming();
     if (messageReceiverThread.joinable()) {
         messageReceiverThread.join();
     }
+    std::cout << "Stopped receiving messages." << std::endl;
 }
 
 void MqttSubscriber::startConsuming() {
@@ -36,23 +38,15 @@ void MqttSubscriber::subscribe(const std::string& topic) {
 }
 
 void MqttSubscriber::startReceiveMessageLoop() {
-    messageReceiverThreadRunning = true;
+    isReceivingMessages = true;
     messageReceiverThread = std::thread([this] () {
-        while (messageReceiverThreadRunning) {
+        while (isReceivingMessages.load()) {
             auto receivedMessage = mMqttClient->consume_message();
             if (receivedMessage) {
                 parseAndLogMessage(receivedMessage);
             }
         }
     });
-}
-
-void MqttSubscriber::stopReceiveMessageLoop() {
-    messageReceiverThreadRunning = false;
-    if (messageReceiverThread.joinable()) {
-        messageReceiverThread.join();
-    }
-    std::cout << "Stopped receiving messages." << std::endl;
 }
 
 void MqttSubscriber::parseAndLogMessage(const mqtt::const_message_ptr& receivedMessage) {
