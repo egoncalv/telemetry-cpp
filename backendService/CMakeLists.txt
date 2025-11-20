@@ -1,4 +1,7 @@
 add_executable(backendService
+        include/MqttSubscriber.h
+
+        src/MqttSubscriber.cpp
         src/main.cpp
 )
 

@@ -18,10 +18,6 @@ MqttPublisher::MqttPublisher(const std::string& brokerAddress, const std::string
     .finalize()) {
 }
 
-MqttPublisher::~MqttPublisher() {
-    disconnect();
-}
-
 void MqttPublisher::publish(const std::string& topic, const std::string& message) {
     auto messageToPublish = mqtt::make_message(topic, message);
     messageToPublish->set_qos(1);
