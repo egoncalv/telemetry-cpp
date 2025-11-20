@@ -25,6 +25,7 @@ void Sensor::start() {
     sensorThread = std::thread([this]() {
         isRunning = true;
         while (isRunning) {
+
             readSensorDataIntoQueue();
             std::this_thread::sleep_for(properties::sensorReadingFrequency);
         }

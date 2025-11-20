@@ -6,6 +6,7 @@ set(PAHO_WITH_MQTT_C ON)
 
 find_package(Protobuf CONFIG REQUIRED)
 
+add_subdirectory(common)
 add_subdirectory(paho.mqtt.cpp)
 add_subdirectory(protobuf)
 add_subdirectory(sensorSimulator)

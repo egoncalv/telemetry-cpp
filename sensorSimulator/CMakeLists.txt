@@ -8,4 +8,7 @@ add_executable(sensorSimulator
         src/main.cpp
 )
 
-target_link_libraries(sensorSimulator PUBLIC protoLib PahoMqttCpp::paho-mqttpp3)
+target_link_libraries(sensorSimulator
+        PUBLIC
+        common
+        protoLib)

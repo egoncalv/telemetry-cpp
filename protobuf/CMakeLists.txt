@@ -10,7 +10,8 @@ protobuf_generate(
 
 target_link_libraries(protoLib
         PUBLIC
-            protobuf::libprotobuf)
+        protobuf::libprotobuf
+)
 
 target_include_directories(protoLib PUBLIC
         ${CMAKE_CURRENT_BINARY_DIR}
