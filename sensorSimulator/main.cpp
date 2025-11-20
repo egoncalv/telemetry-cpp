@@ -4,9 +4,9 @@
 
 #include <memory>
 
-#include "../include/AppProperties.h"
-#include "../include/Sensor.h"
-#include "../include/MqttPublisher.h"
+#include "include/AppProperties.h"
+#include "include/Sensor.h"
+#include "include/MqttPublisher.h"
 #include "v1/SensorData.pb.h"
 
 std::atomic_bool shutdownRequested = false;

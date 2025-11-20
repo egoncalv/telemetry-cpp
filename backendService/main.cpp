@@ -4,7 +4,7 @@
 
 #include <csignal>
 
-#include "../include/MqttSubscriber.h"
+#include "include/MqttSubscriber.h"
 #include <v1/SensorData.pb.h>
 
 std::atomic_bool shutdownRequested = false;

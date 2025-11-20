@@ -5,7 +5,7 @@ add_executable(sensorSimulator
 
         src/Sensor.cpp
         src/MqttPublisher.cpp
-        src/main.cpp
+        main.cpp
 )
 
 target_link_libraries(sensorSimulator

@@ -2,7 +2,7 @@ add_executable(backendService
         include/MqttSubscriber.h
 
         src/MqttSubscriber.cpp
-        src/main.cpp
+        main.cpp
 )
 
 target_link_libraries(backendService
