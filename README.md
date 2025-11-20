@@ -22,3 +22,8 @@ It uses Protobuf, MQTT, multithreading and a safe queue for efficient data handl
 3. Run an MQTT broker (using Docker for example):
 ```bash
      docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8883:8883 -p 18083:18083 emqx/emqx:latest
+```
+
+## Example Output:
+![misc/backendService.png](misc/backendService.png)
+![misc/sensorSimulator.png](misc/sensorSimulator.png)
