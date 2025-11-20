@@ -5,9 +5,9 @@
 #include "../include/AMqttClient.h"
 
 AMqttClient::AMqttClient(mqtt::create_options clientOptions, mqtt::connect_options connectOptions)
-    : mClientId(clientOptions.get_client_id()),
-      mClientOptions(std::move(clientOptions)),
-      mConnectionOptions(std::move(connectOptions)) {
+: mClientId(clientOptions.get_client_id()),
+  mClientOptions(std::move(clientOptions)),
+  mConnectionOptions(std::move(connectOptions)) {
     mMqttClient = std::make_unique<mqtt::async_client>(mClientOptions);
     setMqttCallbacks();
 }

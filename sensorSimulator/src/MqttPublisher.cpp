@@ -22,5 +22,5 @@ void MqttPublisher::publish(const std::string& topic, const std::string& message
     auto messageToPublish = mqtt::make_message(topic, message);
     messageToPublish->set_qos(1);
     mMqttClient->publish(messageToPublish)->wait();
-    std::cout << "Published message to topic " << topic << ": " << message << std::endl;
+    std::cout << "Published message to topic " << topic << std::endl;
 }
