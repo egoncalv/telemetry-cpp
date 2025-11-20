@@ -17,9 +17,10 @@ It uses Protobuf, MQTT, multithreading and a safe queue for efficient data handl
 - Protobuf library
 
 ## How to run:
-1. Build and run backendService application
-2. Build and run sensorSimulator application
-3. Run an MQTT broker (using Docker for example):
+1. Clone the repository and submodule
+2. Build and run backendService application
+3. Build and run sensorSimulator application
+4. Run an MQTT broker (using Docker for example):
 ```bash
      docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8883:8883 -p 18083:18083 emqx/emqx:latest
 ```
