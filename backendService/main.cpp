@@ -3,9 +3,10 @@
 //
 
 #include <csignal>
+#include <v1/SensorData.pb.h>
 
 #include "include/MqttSubscriber.h"
-#include <v1/SensorData.pb.h>
+#include "include/AppProperties.h"
 
 std::atomic_bool shutdownRequested = false;
 
@@ -21,11 +22,11 @@ int main() {
 
     registerSigIntHandler();
 
-    auto mMqttSubscriber = std::make_unique<MqttSubscriber>("tcp://localhost:1883", "backend_service_client");
+    auto mMqttSubscriber = std::make_unique<MqttSubscriber>(properties::brokerAddress, properties::mqttClientId);
     try {
         mMqttSubscriber->startConsuming();
         mMqttSubscriber->connect();
-        mMqttSubscriber->subscribe("sensor/data");
+        mMqttSubscriber->subscribe(properties::sensorDataTopic);
         mMqttSubscriber->startReceiveMessageLoop();
     }
     catch (const mqtt::exception& exc) {
